@@ -1,0 +1,60 @@
+@namespace(uri="http://sql_abstracts", prefix="sql_abstracts")
+@gmf
+package sql_abstracts;
+
+class ModelFactory {
+	val Schema[*] lstSchema;
+}
+
+class Schema extends ModelElement{
+	val Table[*] lstTables;
+}
+
+class ModelElement{
+	attr String name;
+}
+
+class Table extends ModelElement{
+	val Column[*] lstColumns;
+	val PrimaryKey[*] lstPrimaryKeys;
+	val ForeignKey[*] lstForeignKeys;
+}
+
+class Column extends ModelElement{
+    attr Type type;
+    attr String size;
+    attr boolean nullable;
+    attr String comments;
+}
+
+class PrimaryKey extends Column{
+	ref ForeignKey[*] lstReferForeignKeys;
+	attr String table;
+}
+
+
+enum Type {
+  NUMERIC=1;
+  VARCHAR=2;
+  BOOLEAN=3;
+  INTEGER=4;
+  DATE=5;
+  YEAR=6;
+  
+  
+}
+
+class ForeignKey extends ModelElement{
+    ref PrimaryKey referPrimaryKey;
+    attr boolean nullable;
+    attr Type type;
+    attr String size;
+}
+
+
+
+
+
+
+
+
