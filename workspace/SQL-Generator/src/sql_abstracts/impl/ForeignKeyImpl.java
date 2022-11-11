@@ -26,6 +26,7 @@ import sql_abstracts.Type;
  *   <li>{@link sql_abstracts.impl.ForeignKeyImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link sql_abstracts.impl.ForeignKeyImpl#getType <em>Type</em>}</li>
  *   <li>{@link sql_abstracts.impl.ForeignKeyImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link sql_abstracts.impl.ForeignKeyImpl#getTable <em>Table</em>}</li>
  * </ul>
  *
  * @generated
@@ -97,6 +98,26 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 	 * @ordered
 	 */
 	protected String size = SIZE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTable() <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TABLE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTable() <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTable()
+	 * @generated
+	 * @ordered
+	 */
+	protected String table = TABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -232,6 +253,29 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 	 * @generated
 	 */
 	@Override
+	public String getTable() {
+		return table;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTable(String newTable) {
+		String oldTable = table;
+		table = newTable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Sql_abstractsPackage.FOREIGN_KEY__TABLE, oldTable, table));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case Sql_abstractsPackage.FOREIGN_KEY__REFER_PRIMARY_KEY:
@@ -243,6 +287,8 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 				return getType();
 			case Sql_abstractsPackage.FOREIGN_KEY__SIZE:
 				return getSize();
+			case Sql_abstractsPackage.FOREIGN_KEY__TABLE:
+				return getTable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,6 +312,9 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 				return;
 			case Sql_abstractsPackage.FOREIGN_KEY__SIZE:
 				setSize((String)newValue);
+				return;
+			case Sql_abstractsPackage.FOREIGN_KEY__TABLE:
+				setTable((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,6 +340,9 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 			case Sql_abstractsPackage.FOREIGN_KEY__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
+			case Sql_abstractsPackage.FOREIGN_KEY__TABLE:
+				setTable(TABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -311,6 +363,8 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 				return type != TYPE_EDEFAULT;
 			case Sql_abstractsPackage.FOREIGN_KEY__SIZE:
 				return SIZE_EDEFAULT == null ? size != null : !SIZE_EDEFAULT.equals(size);
+			case Sql_abstractsPackage.FOREIGN_KEY__TABLE:
+				return TABLE_EDEFAULT == null ? table != null : !TABLE_EDEFAULT.equals(table);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -331,6 +385,8 @@ public class ForeignKeyImpl extends ModelElementImpl implements ForeignKey {
 		result.append(type);
 		result.append(", size: ");
 		result.append(size);
+		result.append(", table: ");
+		result.append(table);
 		result.append(')');
 		return result.toString();
 	}

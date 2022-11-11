@@ -8,6 +8,9 @@ class ModelFactory {
 
 class Schema extends ModelElement{
 	val Table[*] lstTables;
+	ref Column[*] lstColumns;
+	ref PrimaryKey[*] lstPrimaryKeys;
+	ref ForeignKey[*] lstForeignKeys;
 }
 
 class ModelElement{
@@ -25,11 +28,11 @@ class Column extends ModelElement{
     attr String size;
     attr boolean nullable;
     attr String comments;
+    attr String table;
 }
 
 class PrimaryKey extends Column{
 	ref ForeignKey[*] lstReferForeignKeys;
-	attr String table;
 }
 
 
@@ -49,6 +52,7 @@ class ForeignKey extends ModelElement{
     attr boolean nullable;
     attr Type type;
     attr String size;
+    attr String table;
 }
 
 

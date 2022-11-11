@@ -62,6 +62,8 @@ public class TransformationM2M_SQL {
 					c.setName(a.getName());
 					c.setNullable(a.isNullable());
 					c.setComments(a.getComments());
+					c.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstColumns().add(c);
 					t.getLstColumns().add(c);
 				}else {
 					PrimaryKey c = Sql_abstractsFactory.eINSTANCE.createPrimaryKey();
@@ -70,6 +72,7 @@ public class TransformationM2M_SQL {
 					c.setName(a.getName());
 					c.setNullable(false);
 					c.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstPrimaryKeys().add(c);
 					t.getLstPrimaryKeys().add(c);
 					
 				}
@@ -93,6 +96,8 @@ public class TransformationM2M_SQL {
 					f.setNullable(at.isNullable());
 					f.setType(pk.getType());
 					f.setReferPrimaryKey(pk);
+					f.setTable(tTarget.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(f);
 					pk.getLstReferForeignKeys().add(f);
 					tTarget.getLstForeignKeys().add(f);
 				}
@@ -111,6 +116,8 @@ public class TransformationM2M_SQL {
 						f.setType(pk.getType());
 						f.setSize(pk.getSize());
 						f.setReferPrimaryKey(pk);
+						f.setTable(tTarget.getName());
+						modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(f);
 						pk.getLstReferForeignKeys().add(f);
 						tTarget.getLstForeignKeys().add(f);
 					}
@@ -134,6 +141,7 @@ public class TransformationM2M_SQL {
 					pk.setType(Type.getByName(at.getType().toString()));
 					pk.setSize(at.getSize());
 					pk.setNullable(false);
+					modelFactorySQL.getLstSchema().get(0).getLstPrimaryKeys().add(pk);
 					t.getLstPrimaryKeys().add(pk);
 					
 				}else if(at.isForeignKey()) {
@@ -144,6 +152,8 @@ public class TransformationM2M_SQL {
 					f.setType(pk.getType());
 					f.setSize(pk.getSize());
 					f.setReferPrimaryKey(pk);
+					f.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(f);
 					pk.getLstReferForeignKeys().add(f);
 					t.getLstForeignKeys().add(f);
 					
@@ -154,6 +164,8 @@ public class TransformationM2M_SQL {
 					c.setName(at.getName());
 					c.setNullable(at.isNullable());
 					c.setComments(at.getComments());
+					c.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstColumns().add(c);
 					t.getLstColumns().add(c);
 				}
 			}
@@ -166,6 +178,7 @@ public class TransformationM2M_SQL {
 					pk.setType(Type.getByName(at.getType().toString()));
 					pk.setSize(at.getSize());
 					pk.setNullable(false);
+					modelFactorySQL.getLstSchema().get(0).getLstPrimaryKeys().add(pk);
 					t.getLstPrimaryKeys().add(pk);
 					
 				}else if(at.isForeignKey()) {
@@ -176,6 +189,8 @@ public class TransformationM2M_SQL {
 					f.setType(pk.getType());
 					f.setSize(pk.getSize());
 					f.setReferPrimaryKey(pk);
+					f.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(f);
 					pk.getLstReferForeignKeys().add(f);
 					t.getLstForeignKeys().add(f);
 					
@@ -186,6 +201,8 @@ public class TransformationM2M_SQL {
 					c.setName(at.getName());
 					c.setNullable(at.isNullable());
 					c.setComments(at.getComments());
+					c.setTable(t.getName());
+					modelFactorySQL.getLstSchema().get(0).getLstColumns().add(c);
 					t.getLstColumns().add(c);
 				}
 			}
@@ -223,6 +240,7 @@ public class TransformationM2M_SQL {
 			fkOrigen.setReferPrimaryKey(pkOrigen);
 			fkOrigen.setType(pkOrigen.getType());
 			fkOrigen.setSize(pkOrigen.getSize());
+			fkOrigen.setTable(t.getName());
 			
 			ForeignKey fkDestino = Sql_abstractsFactory.eINSTANCE.createForeignKey();
 			fkDestino.setName(pkDestino.getName());
@@ -230,10 +248,14 @@ public class TransformationM2M_SQL {
 			fkDestino.setReferPrimaryKey(pkDestino);
 			fkDestino.setType(pkDestino.getType());
 			fkDestino.setSize(pkDestino.getSize());
+			fkDestino.setTable(t.getName());
 			
 			t.getLstPrimaryKeys().add(pk);
+			modelFactorySQL.getLstSchema().get(0).getLstPrimaryKeys().add(pk);
 			t.getLstForeignKeys().add(fkDestino);
 			t.getLstForeignKeys().add(fkOrigen);
+			modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(fkDestino);
+			modelFactorySQL.getLstSchema().get(0).getLstForeignKeys().add(fkOrigen);
 			modelFactorySQL.getLstSchema().get(0).getLstTables().add(t);
 			
 		}

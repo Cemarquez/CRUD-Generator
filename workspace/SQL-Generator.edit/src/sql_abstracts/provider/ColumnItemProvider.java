@@ -49,6 +49,7 @@ public class ColumnItemProvider extends ModelElementItemProvider {
 			addSizePropertyDescriptor(object);
 			addNullablePropertyDescriptor(object);
 			addCommentsPropertyDescriptor(object);
+			addTablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -111,6 +112,28 @@ public class ColumnItemProvider extends ModelElementItemProvider {
 				 getString("_UI_Column_comments_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_comments_feature", "_UI_Column_type"),
 				 Sql_abstractsPackage.Literals.COLUMN__COMMENTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Table feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Column_table_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Column_table_feature", "_UI_Column_type"),
+				 Sql_abstractsPackage.Literals.COLUMN__TABLE,
 				 true,
 				 false,
 				 false,
@@ -183,6 +206,7 @@ public class ColumnItemProvider extends ModelElementItemProvider {
 			case Sql_abstractsPackage.COLUMN__SIZE:
 			case Sql_abstractsPackage.COLUMN__NULLABLE:
 			case Sql_abstractsPackage.COLUMN__COMMENTS:
+			case Sql_abstractsPackage.COLUMN__TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

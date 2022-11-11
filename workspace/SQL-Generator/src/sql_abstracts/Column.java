@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link sql_abstracts.Column#getSize <em>Size</em>}</li>
  *   <li>{@link sql_abstracts.Column#isNullable <em>Nullable</em>}</li>
  *   <li>{@link sql_abstracts.Column#getComments <em>Comments</em>}</li>
+ *   <li>{@link sql_abstracts.Column#getTable <em>Table</em>}</li>
  * </ul>
  *
  * @see sql_abstracts.Sql_abstractsPackage#getColumn()
@@ -92,6 +93,28 @@ public interface Column extends ModelElement {
 	 * @generated
 	 */
 	void setComments(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Table</em>' attribute.
+	 * @see #setTable(String)
+	 * @see sql_abstracts.Sql_abstractsPackage#getColumn_Table()
+	 * @model
+	 * @generated
+	 */
+	String getTable();
+
+	/**
+	 * Sets the value of the '{@link sql_abstracts.Column#getTable <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Table</em>' attribute.
+	 * @see #getTable()
+	 * @generated
+	 */
+	void setTable(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Size</b></em>' attribute.

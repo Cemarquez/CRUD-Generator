@@ -32,6 +32,7 @@ import sql_abstracts.Type;
  *   <li>{@link sql_abstracts.impl.ColumnImpl#getSize <em>Size</em>}</li>
  *   <li>{@link sql_abstracts.impl.ColumnImpl#isNullable <em>Nullable</em>}</li>
  *   <li>{@link sql_abstracts.impl.ColumnImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link sql_abstracts.impl.ColumnImpl#getTable <em>Table</em>}</li>
  * </ul>
  *
  * @generated
@@ -116,6 +117,26 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 	 * @ordered
 	 */
 	protected String comments = COMMENTS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTable() <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TABLE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTable() <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTable()
+	 * @generated
+	 * @ordered
+	 */
+	protected String table = TABLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -211,6 +232,29 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 	 * @generated
 	 */
 	@Override
+	public String getTable() {
+		return table;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTable(String newTable) {
+		String oldTable = table;
+		table = newTable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Sql_abstractsPackage.COLUMN__TABLE, oldTable, table));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getSize() {
 		return size;
 	}
@@ -244,6 +288,8 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 				return isNullable();
 			case Sql_abstractsPackage.COLUMN__COMMENTS:
 				return getComments();
+			case Sql_abstractsPackage.COLUMN__TABLE:
+				return getTable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,6 +315,9 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 			case Sql_abstractsPackage.COLUMN__COMMENTS:
 				setComments((String)newValue);
 				return;
+			case Sql_abstractsPackage.COLUMN__TABLE:
+				setTable((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -293,6 +342,9 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 			case Sql_abstractsPackage.COLUMN__COMMENTS:
 				setComments(COMMENTS_EDEFAULT);
 				return;
+			case Sql_abstractsPackage.COLUMN__TABLE:
+				setTable(TABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -313,6 +365,8 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 				return nullable != NULLABLE_EDEFAULT;
 			case Sql_abstractsPackage.COLUMN__COMMENTS:
 				return COMMENTS_EDEFAULT == null ? comments != null : !COMMENTS_EDEFAULT.equals(comments);
+			case Sql_abstractsPackage.COLUMN__TABLE:
+				return TABLE_EDEFAULT == null ? table != null : !TABLE_EDEFAULT.equals(table);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -335,6 +389,8 @@ public class ColumnImpl extends ModelElementImpl implements Column {
 		result.append(nullable);
 		result.append(", comments: ");
 		result.append(comments);
+		result.append(", table: ");
+		result.append(table);
 		result.append(')');
 		return result.toString();
 	}

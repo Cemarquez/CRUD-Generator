@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<interface>
+	<requires lib="gtk+" version="2.16"/>
+	<!-- interface-naming-policy project-wide -->
+	<object class="GtkWindow" id="CRUD">
+  		<child>
+			<object class="GtkFixed" id="fixMain">
+        		<property name="width_request">776</property>
+        		<property name="height_request">606</property>
+        		<property name="visible">True</property>	
+				<child>
+					<object class="GtkFrame" id="frameusuario">
+						<property name="width_request">741</property>
+						<property name="height_request">256</property>
+						<property name="visible">True</property>
+						<property name="border_width">1</property>
+						<property name="label_xalign">0</property>
+						<property name="shadow_type">out</property>
+						<child>
+				              <object class="GtkFixed" id="fixusuario">
+				                <property name="visible">True</property>
+				                <property name="can-focus">False</property>
+									<child>
+										<object class="GtkLabel" id="lbllblNombre">
+											<property name="width-request">63</property>
+											<property name="height-request">25</property>
+											<property name="visible">True</property>
+											<property name="can-focus">False</property>
+											<property name="label" translatable="yes">Nombre: </property>
+											<attributes>
+												<attribute name="font-desc" value="Sans Bold 10"/>
+												<attribute name="style" value="normal"/>
+												<attribute name="scale" value="1"/>
+												<attribute name="underline" value="false"/>
+												<attribute name="strikethrough" value="false"/>
+												<attribute name="foreground" value="#000000000000"/>
+											</attributes>
+										</object>
+										<packing>
+										<property name="x">8</property>
+										<property name="y">20</property>
+										</packing>
+									</child>
+									<child>
+										<object class="GtkEntry" id="entrytfNombre">
+											<property name="width-request">311</property>
+											<property name="height-request">36</property>
+											<property name="visible">True</property>
+											<property name="can-focus">True</property>
+											<property name="invisible-char">â—�</property>
+											<property name="shadow-type">etched-out</property>
+											<property name="placeholder-text" translatable="yes">Nombre</property>
+										</object>
+										<packing>
+											<property name="x">115</property>
+											<property name="y">9</property>
+										</packing>
+									</child>
+									<child>
+										<object class="GtkButton" id="buttonbtnGuardar">
+											<property name="label" translatable="yes">Guardar</property>
+											<property name="width_request">311</property>
+											<property name="height_request">61</property>
+											<property name="visible">true</property>
+											<property name="can_focus">True</property>
+											<property name="receives_default">True</property>
+										</object>
+										<packing>
+											<property name="x">180</property>
+											<property name="y">134</property>
+										</packing>
+									</child>
+				              </object>
+				        </child>
+						<child type="label">
+				              <object class="GtkLabel" id="lblusuario">
+				                <property name="visible">True</property>
+				                <property name="can-focus">False</property>
+				                <property name="label" translatable="yes">&lt;b&gt;Usuario&lt;/b&gt;</property>
+				                <property name="use-markup">True</property>
+				              </object>
+				            </child>
+					</object>
+					<packing>
+						<property name="x">5</property>
+						<property name="y">4</property>
+					</packing>
+				</child>
+				
+				
+				
+  			</object>
+   		 </child>
+	</object>
+</interface>
+

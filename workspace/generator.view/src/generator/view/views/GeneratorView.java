@@ -107,6 +107,7 @@ public class GeneratorView extends ViewPart {
 			public void widgetSelected(SelectionEvent e) {
 				ModelFactoryModel mfm = new ModelFactoryModel();
 				mfm.generarModelToModelSQL();
+				mfm.generarModelToModelUI();
 			}
 		});
 		btnM2MSQL.setText("Generar modelo relacional");
@@ -143,6 +144,20 @@ public class GeneratorView extends ViewPart {
 		});
 		btnAll.setText("Limpiar y generar todo");
 		btnAll.setBounds(115, 22, 334, 38);
+		
+		Group grpGeneracinUI = new Group(parent, SWT.NONE);
+		grpGeneracinUI.setText("UI");
+		grpGeneracinUI.setBounds(600, 255, 562, 74); 
+		Button btnUI = new Button(grpGeneracinUI, SWT.NONE);
+		btnUI.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ModelFactoryModel mfm = new ModelFactoryModel();
+				mfm.generarModelToTextUI();
+			}
+		});
+		btnUI.setText("Generar CRUD");
+		btnUI.setBounds(115, 22, 334, 38);
 	}
 
 	@Override

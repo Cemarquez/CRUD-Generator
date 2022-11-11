@@ -1,0 +1,230 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module generate('http://ui_concrete')]
+
+
+[**
+ * The documentation of the template generateElement.
+ * @param anUserInterface
+ */]
+[template public generateElement(anUserInterface : UserInterface)]
+[comment @main/]
+[file (anUserInterface.name + 'ViewPart.glade', false, 'UTF-8')]
+<?xml version="1.0"?>
+<interface>
+	<requires lib="gtk+" version="2.16"/>
+	<!-- interface-naming-policy project-wide -->
+	<object class="GtkWindow" id="[anUserInterface.name/]">
+  		<child>
+			<object class="GtkFixed" id="fixMain">
+        		<property name="width_request">[anUserInterface.width/]</property>
+        		<property name="height_request">[anUserInterface.height/]</property>
+        		<property name="visible">True</property>	
+				[generateVarWidgets(anUserInterface)/]
+  			</object>
+   		 </child>
+	</object>
+</interface>
+
+[/file]
+[generateController(anUserInterface)/]
+[/template]
+
+[template public generateController(anUserInterface : UserInterface)]
+
+[file (anUserInterface.name + 'ViewPart.rb', false, 'UTF-8')]
+require "gtk3"
+
+builder = Gtk::Builder.new
+builder.add_from_file("[anUserInterface.name+ 'ViewPart.glade'/]")
+window = builder.get_object("[anUserInterface.name/]")
+[for(widget : ModelElement | lstModelElements)]
+[if (widget.oclIsKindOf(GraphicalContainer))]
+[for(widgetC : ModelElement |widget.oclAsType(GraphicalContainer).lstChildModelElements)]
+[if (widgetC.oclIsKindOf(GraphicalIndividual))]
+[if (widgetC.oclIsKindOf(List))]
+data[widgetC.oclAsType(List).name/] = {}
+model[widgetC.oclAsType(List).name/] = Gtk::ListStore.new(String)
+
+column[widgetC.oclAsType(List).name/] = Gtk::TreeViewColumn.new("[widgetC.oclAsType(List).name/]", Gtk::CellRendererText.new, {:text => 0})
+treeview[widgetC.oclAsType(List).name/] = builder.get_object("treeview[widgetC.oclAsType(List).name/]")
+treeview[widgetC.oclAsType(List).name/].set_model(model[widgetC.oclAsType(List).name/])
+treeview[widgetC.oclAsType(List).name/].append_column(column[widgetC.oclAsType(List).name/])
+treeview[widgetC.oclAsType(List).name/].selection.set_mode(:single)
+[/if]
+[/if]
+[/for]
+[/if]
+[/for]
+window.show_all
+Gtk.main
+[/file]
+[/template]
+
+[template public generateVarWidgets(anUserInterface : UserInterface)]
+[for(widget : ModelElement | lstModelElements)]
+[if (widget.oclIsKindOf(GraphicalContainer))]
+[generateGraphicalContainer(widget)/]
+[/if]
+
+[if (widget.oclIsKindOf(GraphicalIndividual))]
+[generateGraphicalIndividual(widget)/]
+[/if]
+[/for]
+[/template]
+
+[template public generateGraphicalContainer(anGraphicalContainer : ModelElement)]
+[if (anGraphicalContainer.oclIsKindOf(Group))]
+<child>
+	<object class="GtkFrame" id="frame[anGraphicalContainer.name/]">
+		<property name="width_request">[anGraphicalContainer.width/]</property>
+		<property name="height_request">[anGraphicalContainer.height/]</property>
+		<property name="visible">True</property>
+		<property name="border_width">1</property>
+		<property name="label_xalign">0</property>
+		<property name="shadow_type">out</property>
+		<child>
+              <object class="GtkFixed" id="fix[anGraphicalContainer.name/]">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                [for(widget : ModelElement | anGraphicalContainer.oclAsType(GraphicalContainer).lstChildModelElements)]
+					[if (widget.oclIsKindOf(GraphicalIndividual))]
+					[generateGraphicalIndividual(widget)/]
+					[/if]
+				[/for]
+              </object>
+        </child>
+		<child type="label">
+              <object class="GtkLabel" id="lbl[anGraphicalContainer.name/]">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">&lt;b&gt;[anGraphicalContainer.oclAsType(Group).title/]&lt;/b&gt;</property>
+                <property name="use-markup">True</property>
+              </object>
+            </child>
+	</object>
+	<packing>
+		<property name="x">[anGraphicalContainer.positionX/]</property>
+		<property name="y">[anGraphicalContainer.positionY/]</property>
+	</packing>
+</child>
+[/if]
+[/template]
+
+
+[template public generateGraphicalIndividual(anIndividualElement : ModelElement) post(trim()) ]
+[if (anIndividualElement.oclIsKindOf(Label))]
+<child>
+	<object class="GtkLabel" id="lbl[anIndividualElement.oclAsType(Label).name/]">
+		<property name="width-request">[anIndividualElement.oclAsType(Label).width/]</property>
+		<property name="height-request">[anIndividualElement.oclAsType(Label).height/]</property>
+		<property name="visible">True</property>
+		<property name="can-focus">False</property>
+		<property name="label" translatable="yes">[anIndividualElement.oclAsType(Label).text/]</property>
+		<attributes>
+			<attribute name="font-desc" value="[anIndividualElement.oclAsType(Label).font/]"/>
+			<attribute name="style" value="[anIndividualElement.oclAsType(Label).style/]"/>
+			<attribute name="scale" value="1"/>
+			<attribute name="underline" value="[anIndividualElement.oclAsType(Label).underline/]"/>
+			<attribute name="strikethrough" value="[anIndividualElement.oclAsType(Label).strikethrough/]"/>
+			<attribute name="foreground" value="[anIndividualElement.oclAsType(Label).foregroundColor/]"/>
+		</attributes>
+	</object>
+	<packing>
+	<property name="x">[anIndividualElement.oclAsType(Label).positionX/]</property>
+	<property name="y">[anIndividualElement.oclAsType(Label).positionY/]</property>
+	</packing>
+</child>
+[/if]
+[if (anIndividualElement.oclIsKindOf(Button))]
+<child>
+	<object class="GtkButton" id="button[anIndividualElement.oclAsType(Button).name/]">
+		<property name="label" translatable="yes">[anIndividualElement.oclAsType(Button).text/]</property>
+		<property name="width_request">[anIndividualElement.oclAsType(Button).width/]</property>
+		<property name="height_request">[anIndividualElement.oclAsType(Button).height/]</property>
+		<property name="visible">[anIndividualElement.oclAsType(Button).visible/]</property>
+		<property name="can_focus">True</property>
+		<property name="receives_default">True</property>
+	</object>
+	<packing>
+		<property name="x">[anIndividualElement.oclAsType(Button).positionX/]</property>
+		<property name="y">[anIndividualElement.oclAsType(Button).positionY/]</property>
+	</packing>
+</child>
+[/if]
+[if (anIndividualElement.oclIsKindOf(TextInput))]
+<child>
+	<object class="GtkEntry" id="entry[anIndividualElement.oclAsType(TextInput).name/]">
+		<property name="width-request">[anIndividualElement.oclAsType(TextInput).width/]</property>
+		<property name="height-request">[anIndividualElement.oclAsType(TextInput).height/]</property>
+		<property name="visible">True</property>
+		<property name="can-focus">True</property>
+		<property name="invisible-char">â—�</property>
+		<property name="shadow-type">etched-out</property>
+		<property name="placeholder-text" translatable="yes">[anIndividualElement.oclAsType(TextInput).placeHolder/]</property>
+	</object>
+	<packing>
+		<property name="x">[anIndividualElement.oclAsType(TextInput).positionX/]</property>
+		<property name="y">[anIndividualElement.oclAsType(TextInput).positionY/]</property>
+	</packing>
+</child>
+[/if]
+[if (anIndividualElement.oclIsKindOf(RadioButton))]
+<child>
+	<object class="GtkRadioButton" id="radio[anIndividualElement.oclAsType(RadioButton).name/]">
+		<property name="label" translatable="yes">[anIndividualElement.oclAsType(RadioButton).text/]</property>
+		<property name="width_request">[anIndividualElement.oclAsType(RadioButton).width/]</property>
+		<property name="height_request">[anIndividualElement.oclAsType(RadioButton).height/]</property>
+		<property name="visible">True</property>
+		<property name="can_focus">True</property>
+		<property name="receives_default">False</property>
+		<property name="active">True</property>
+		<property name="draw_indicator">True</property>
+		[if(anIndividualElement.oclAsType(RadioButton).group.equalsIgnoreCase('null')._not())]
+		<property name="group">[anIndividualElement.oclAsType(RadioButton).group/]</property>
+		[/if]
+		
+	</object>
+	<packing>
+		<property name="x">[anIndividualElement.oclAsType(RadioButton).positionX/]</property>
+		<property name="y">[anIndividualElement.oclAsType(RadioButton).positionY/]</property>
+	</packing>
+</child>
+
+[/if]
+[if (anIndividualElement.oclIsKindOf(CheckBox))]
+<child>
+	<object class="GtkCheckButton" id="check[anIndividualElement.oclAsType(CheckBox).name/]">
+		<property name="label" translatable="yes">[anIndividualElement.oclAsType(CheckBox).text/]</property>
+		<property name="width-request">[anIndividualElement.oclAsType(CheckBox).width/]</property>
+		<property name="height-request">[anIndividualElement.oclAsType(CheckBox).height/]</property>
+		<property name="visible">True</property>
+		<property name="can-focus">True</property>
+		<property name="receives-default">False</property>
+		<property name="draw-indicator">True</property>
+		<property name="active">[anIndividualElement.oclAsType(CheckBox).selected/]</property>
+	</object>
+	<packing>
+		<property name="x">[anIndividualElement.oclAsType(CheckBox).positionX/]</property>
+		<property name="y">[anIndividualElement.oclAsType(CheckBox).positionY/]</property>
+	</packing>
+</child>
+[/if]
+[if (anIndividualElement.oclIsKindOf(List))]
+<child>
+	<object class="GtkTreeView" id="treeview[anIndividualElement.oclAsType(List).name/]">
+		<property name="width-request">[anIndividualElement.oclAsType(List).width/]"</property>
+			<property name="height-request">[anIndividualElement.oclAsType(List).height/]"</property>
+			<property name="visible">True</property>
+			<property name="can-focus">True</property>
+		</object>
+		<packing>
+			<property name="x">[anIndividualElement.oclAsType(List).positionX/]"</property>
+			<property name="y">[anIndividualElement.oclAsType(List).positionY/]"</property>
+	</packing>
+</child>
+[/if]
+
+[/template]

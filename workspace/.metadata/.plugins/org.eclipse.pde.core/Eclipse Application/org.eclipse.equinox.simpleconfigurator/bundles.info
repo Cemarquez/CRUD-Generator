@@ -13,6 +13,11 @@ SQL-Generator,0.1.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/works
 SQL-Generator.edit,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/SQL-Generator.edit/,4,false
 SQL-Generator.editor,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/SQL-Generator.editor/,4,false
 SQL-Generator.tests,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/SQL-Generator.tests/,4,false
+UI-Concrete,0.1.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/UI-Concrete/,4,false
+UI-Concrete.diagram,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/UI-Concrete.diagram/,4,false
+UI-Concrete.edit,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/UI-Concrete.edit/,4,false
+UI-Concrete.editor,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/UI-Concrete.editor/,4,false
+UI-Concrete.tests,1.0.0.qualifier,file:/C:/Users/cesar/Documents/SQL-Generator/workspace/UI-Concrete.tests/,4,false
 com.atlassian.commonmark,0.15.1.v20200707-1444,file:/C:/Users/cesar/.p2/pool/plugins/com.atlassian.commonmark_0.15.1.v20200707-1444.jar,4,false
 com.atlassian.commonmark-gfm-strikethrough,0.15.1.v20200707-1444,file:/C:/Users/cesar/.p2/pool/plugins/com.atlassian.commonmark-gfm-strikethrough_0.15.1.v20200707-1444.jar,4,false
 com.atlassian.commonmark-gfm-tables,0.15.1.v20200707-1444,file:/C:/Users/cesar/.p2/pool/plugins/com.atlassian.commonmark-gfm-tables_0.15.1.v20200707-1444.jar,4,false

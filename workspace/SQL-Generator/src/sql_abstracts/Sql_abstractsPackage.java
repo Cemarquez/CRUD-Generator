@@ -142,13 +142,40 @@ public interface Sql_abstractsPackage extends EPackage {
 	int SCHEMA__LST_TABLES = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Lst Columns</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__LST_COLUMNS = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Lst Primary Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__LST_PRIMARY_KEYS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Lst Foreign Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__LST_FOREIGN_KEYS = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Schema</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SCHEMA_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link sql_abstracts.impl.TableImpl <em>Table</em>}' class.
@@ -261,13 +288,22 @@ public interface Sql_abstractsPackage extends EPackage {
 	int COLUMN__COMMENTS = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__TABLE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int COLUMN_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link sql_abstracts.impl.PrimaryKeyImpl <em>Primary Key</em>}' class.
@@ -324,6 +360,16 @@ public interface Sql_abstractsPackage extends EPackage {
 	 */
 	int PRIMARY_KEY__COMMENTS = COLUMN__COMMENTS;
 
+
+	/**
+	 * The feature id for the '<em><b>Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY__TABLE = COLUMN__TABLE;
+
 	/**
 	 * The feature id for the '<em><b>Lst Refer Foreign Keys</b></em>' reference list.
 	 * <!-- begin-user-doc -->
@@ -334,22 +380,13 @@ public interface Sql_abstractsPackage extends EPackage {
 	int PRIMARY_KEY__LST_REFER_FOREIGN_KEYS = COLUMN_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Table</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMARY_KEY__TABLE = COLUMN_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Primary Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIMARY_KEY_FEATURE_COUNT = COLUMN_FEATURE_COUNT + 2;
+	int PRIMARY_KEY_FEATURE_COUNT = COLUMN_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link sql_abstracts.impl.ForeignKeyImpl <em>Foreign Key</em>}' class.
@@ -407,13 +444,22 @@ public interface Sql_abstractsPackage extends EPackage {
 	int FOREIGN_KEY__SIZE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__TABLE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Foreign Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FOREIGN_KEY_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 
 	/**
@@ -468,6 +514,39 @@ public interface Sql_abstractsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSchema_LstTables();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sql_abstracts.Schema#getLstColumns <em>Lst Columns</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Lst Columns</em>'.
+	 * @see sql_abstracts.Schema#getLstColumns()
+	 * @see #getSchema()
+	 * @generated
+	 */
+	EReference getSchema_LstColumns();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sql_abstracts.Schema#getLstPrimaryKeys <em>Lst Primary Keys</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Lst Primary Keys</em>'.
+	 * @see sql_abstracts.Schema#getLstPrimaryKeys()
+	 * @see #getSchema()
+	 * @generated
+	 */
+	EReference getSchema_LstPrimaryKeys();
+
+	/**
+	 * Returns the meta object for the reference list '{@link sql_abstracts.Schema#getLstForeignKeys <em>Lst Foreign Keys</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Lst Foreign Keys</em>'.
+	 * @see sql_abstracts.Schema#getLstForeignKeys()
+	 * @see #getSchema()
+	 * @generated
+	 */
+	EReference getSchema_LstForeignKeys();
 
 	/**
 	 * Returns the meta object for class '{@link sql_abstracts.ModelElement <em>Model Element</em>}'.
@@ -577,6 +656,17 @@ public interface Sql_abstractsPackage extends EPackage {
 	EAttribute getColumn_Comments();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sql_abstracts.Column#getTable <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Table</em>'.
+	 * @see sql_abstracts.Column#getTable()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EAttribute getColumn_Table();
+
+	/**
 	 * Returns the meta object for the attribute '{@link sql_abstracts.Column#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,17 +697,6 @@ public interface Sql_abstractsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPrimaryKey_LstReferForeignKeys();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sql_abstracts.PrimaryKey#getTable <em>Table</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Table</em>'.
-	 * @see sql_abstracts.PrimaryKey#getTable()
-	 * @see #getPrimaryKey()
-	 * @generated
-	 */
-	EAttribute getPrimaryKey_Table();
 
 	/**
 	 * Returns the meta object for class '{@link sql_abstracts.ForeignKey <em>Foreign Key</em>}'.
@@ -672,6 +751,17 @@ public interface Sql_abstractsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getForeignKey_Size();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sql_abstracts.ForeignKey#getTable <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Table</em>'.
+	 * @see sql_abstracts.ForeignKey#getTable()
+	 * @see #getForeignKey()
+	 * @generated
+	 */
+	EAttribute getForeignKey_Table();
 
 	/**
 	 * Returns the meta object for enum '{@link sql_abstracts.Type <em>Type</em>}'.
@@ -740,6 +830,30 @@ public interface Sql_abstractsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SCHEMA__LST_TABLES = eINSTANCE.getSchema_LstTables();
+
+		/**
+		 * The meta object literal for the '<em><b>Lst Columns</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__LST_COLUMNS = eINSTANCE.getSchema_LstColumns();
+
+		/**
+		 * The meta object literal for the '<em><b>Lst Primary Keys</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__LST_PRIMARY_KEYS = eINSTANCE.getSchema_LstPrimaryKeys();
+
+		/**
+		 * The meta object literal for the '<em><b>Lst Foreign Keys</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__LST_FOREIGN_KEYS = eINSTANCE.getSchema_LstForeignKeys();
 
 		/**
 		 * The meta object literal for the '{@link sql_abstracts.impl.ModelElementImpl <em>Model Element</em>}' class.
@@ -828,6 +942,14 @@ public interface Sql_abstractsPackage extends EPackage {
 		EAttribute COLUMN__COMMENTS = eINSTANCE.getColumn_Comments();
 
 		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__TABLE = eINSTANCE.getColumn_Table();
+
+		/**
 		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -852,14 +974,6 @@ public interface Sql_abstractsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PRIMARY_KEY__LST_REFER_FOREIGN_KEYS = eINSTANCE.getPrimaryKey_LstReferForeignKeys();
-
-		/**
-		 * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PRIMARY_KEY__TABLE = eINSTANCE.getPrimaryKey_Table();
 
 		/**
 		 * The meta object literal for the '{@link sql_abstracts.impl.ForeignKeyImpl <em>Foreign Key</em>}' class.
@@ -902,6 +1016,14 @@ public interface Sql_abstractsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FOREIGN_KEY__SIZE = eINSTANCE.getForeignKey_Size();
+
+		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOREIGN_KEY__TABLE = eINSTANCE.getForeignKey_Table();
 
 		/**
 		 * The meta object literal for the '{@link sql_abstracts.Type <em>Type</em>}' enum.

@@ -46,7 +46,6 @@ public class PrimaryKeyItemProvider extends ColumnItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addLstReferForeignKeysPropertyDescriptor(object);
-			addTablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -69,28 +68,6 @@ public class PrimaryKeyItemProvider extends ColumnItemProvider {
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Table feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PrimaryKey_table_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PrimaryKey_table_feature", "_UI_PrimaryKey_type"),
-				 Sql_abstractsPackage.Literals.PRIMARY_KEY__TABLE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -131,12 +108,6 @@ public class PrimaryKeyItemProvider extends ColumnItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(PrimaryKey.class)) {
-			case Sql_abstractsPackage.PRIMARY_KEY__TABLE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

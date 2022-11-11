@@ -1,0 +1,7 @@
+# Tracing options for the UI-Concrete.diagram plug-in
+
+# Common issues
+UI-Concrete.diagram/debug=false
+
+# Visual IDs
+UI-Concrete.diagram/debug/visualID=false

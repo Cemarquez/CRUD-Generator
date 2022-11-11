@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/UI-Concrete/src" modelPluginID="UI-Concrete"
+    modelName="Ui_concrete" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>ui_concrete.emf</foreignModel>
+  <genPackages prefix="Ui_concrete" disposableProviderFactory="true" ecorePackage="ui_concrete.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ui_concrete.ecore#//Action">
+      <genEnumLiterals ecoreEnumLiteral="ui_concrete.ecore#//Action/CREATE"/>
+      <genEnumLiterals ecoreEnumLiteral="ui_concrete.ecore#//Action/DELETE"/>
+      <genEnumLiterals ecoreEnumLiteral="ui_concrete.ecore#//Action/UPDATE"/>
+    </genEnums>
+    <genClasses ecoreClass="ui_concrete.ecore#//ModelFactory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//ModelFactory/lstUI_Diagrams"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//UI_Diagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//UI_Diagram/userInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//UI_Diagram/ltsButtonActions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//UI_Diagram/lstColumns"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//UserInterface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//UserInterface/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//UserInterface/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//UserInterface/height"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//UserInterface/lstModelElements"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Column/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Column/table"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Column/db"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Column/columnName"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//ModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/positionX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/positionY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ModelElement/backgroundColor"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//GraphicalContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//GraphicalContainer/lstChildModelElements"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//GraphicalIndividual"/>
+    <genClasses ecoreClass="ui_concrete.ecore#//Group">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Group/title"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//Button">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Button/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Button/visible"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//Label">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/font"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/foregroundColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/style"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/underline"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Label/strikethrough"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//CheckBox">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//CheckBox/selected"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//CheckBox/text"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//CheckBox/columnSQL"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//TextInput">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//TextInput/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//TextInput/placeHolder"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//TextInput/columnSQL"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//Image/path"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//List"/>
+    <genClasses ecoreClass="ui_concrete.ecore#//RadioButton">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//RadioButton/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//RadioButton/group"/>
+    </genClasses>
+    <genClasses ecoreClass="ui_concrete.ecore#//ButtonAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ButtonAction/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//ButtonAction/ltsGraphicalIndividual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ui_concrete.ecore#//ButtonAction/buttonAction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ui_concrete.ecore#//ButtonAction/action"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

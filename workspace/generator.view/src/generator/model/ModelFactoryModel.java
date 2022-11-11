@@ -1,5 +1,7 @@
 package generator.model;
 
+import java.io.File;
+
 import abstracts.AbstractsFactory;
 import concrete.ConcretePackage;
 import concrete.MClassDiagram;
@@ -23,6 +25,7 @@ public class ModelFactoryModel {
 	private abstracts.ModelFactory modelFactoryAbstracta;
 	private concrete.ModelFactory modelFactoryConcreta;
 	private sql_abstracts.ModelFactory modelFactorySQL;
+	private ui_concrete.ModelFactory modelFactoryUI;
 
 	public ModelFactoryModel() {
 	
@@ -51,11 +54,37 @@ public class ModelFactoryModel {
 	
 	}
 	
+	public ui_concrete.ModelFactory cargarUI() {
+		ui_concrete.ModelFactory modelFactory = null;
+
+		ConcretePackage whoownmePackage =  ConcretePackage.eINSTANCE;
+		org.eclipse.emf.ecore.resource.ResourceSet resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
+		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.ui_concrete");
+		System.out.println("Path: "+uri.path());
+
+		File f = new File(uri.path());
+		System.out.println(f.getAbsolutePath());
+		System.out.println(f.exists());
+		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
+		try {
+			resource.load(null);
+			modelFactory = (ui_concrete.ModelFactory)resource.getContents().get(0);
+			System.out.println("loaded: " + modelFactory);
+		}
+		catch (java.io.IOException e) {
+			System.out.println("failed to read " + uri); 		
+			System.out.println(e);
+		}
+		return modelFactory;
+		
+	
+	}
+	
 	public sql_abstracts.ModelFactory cargarSQL() {
 		sql_abstracts.ModelFactory modelFactory = null;
 
 		org.eclipse.emf.ecore.resource.ResourceSet resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
-		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model2.sql_abstracts");
+		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.sql_abstracts");
 		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
 
 		try {
@@ -106,11 +135,25 @@ public class ModelFactoryModel {
 
 		return;
 
+	}
+
+	public void salvarUI() {
+		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.ui_concrete");
+		org.eclipse.emf.ecore.resource.ResourceSet resourceSet= new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
+		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(modelFactoryUI);
+		try {
+			resource.save(java.util.Collections.EMPTY_MAP);
+		} catch (java.io.IOException e) {
+			e.printStackTrace();
+		}
+
+		return;
+
 }
 	
-	
 	public void salvarAbstractaSQL() {
-		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model2.sql_abstracts");
+		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.sql_abstracts");
 		org.eclipse.emf.ecore.resource.ResourceSet resourceSet= new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
 		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(modelFactorySQL);
@@ -136,7 +179,7 @@ public class ModelFactoryModel {
 	
 	public void generarModelToModelSQL() {
 		modelFactoryAbstracta = cargarAbstracta();
-		modelFactorySQL = cargarSQL();
+		modelFactorySQL = Sql_abstractsFactory.eINSTANCE.createModelFactory();
 		TransformationM2M_SQL m2m = new TransformationM2M_SQL(modelFactoryAbstracta, modelFactorySQL);
 		m2m.transformarM2MSQL();
 		salvarAbstractaSQL();
@@ -155,6 +198,14 @@ public class ModelFactoryModel {
 		
 	}
 
+	public void  generarModelToModelUI() {
+		modelFactorySQL = cargarSQL();
+		modelFactoryUI = cargarUI();
+		
+		TransformationM2M_UI tM2M = new TransformationM2M_UI(modelFactorySQL, modelFactoryUI);
+		tM2M.transformarM2MUI();
+		salvarUI();
+	}
 	
 	public void generarModelToTextSQL() {
 		modelFactorySQL = cargarSQL();
@@ -167,6 +218,13 @@ public class ModelFactoryModel {
 		TransformationM2T tM2T = new TransformationM2T(modelFactoryAbstracta);
 		tM2T.transformarM2T();
 		
+	}
+	
+	
+	public void generarModelToTextUI() {
+		modelFactoryUI = cargarUI();
+		TransformationM2T_UI tM2T = new TransformationM2T_UI(modelFactoryUI);
+		tM2T.transformarM2T();
 	}
 
 }

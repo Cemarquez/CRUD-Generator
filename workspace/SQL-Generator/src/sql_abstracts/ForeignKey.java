@@ -16,6 +16,7 @@ package sql_abstracts;
  *   <li>{@link sql_abstracts.ForeignKey#isNullable <em>Nullable</em>}</li>
  *   <li>{@link sql_abstracts.ForeignKey#getType <em>Type</em>}</li>
  *   <li>{@link sql_abstracts.ForeignKey#getSize <em>Size</em>}</li>
+ *   <li>{@link sql_abstracts.ForeignKey#getTable <em>Table</em>}</li>
  * </ul>
  *
  * @see sql_abstracts.Sql_abstractsPackage#getForeignKey()
@@ -113,5 +114,27 @@ public interface ForeignKey extends ModelElement {
 	 * @generated
 	 */
 	void setSize(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Table</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Table</em>' attribute.
+	 * @see #setTable(String)
+	 * @see sql_abstracts.Sql_abstractsPackage#getForeignKey_Table()
+	 * @model
+	 * @generated
+	 */
+	String getTable();
+
+	/**
+	 * Sets the value of the '{@link sql_abstracts.ForeignKey#getTable <em>Table</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Table</em>' attribute.
+	 * @see #getTable()
+	 * @generated
+	 */
+	void setTable(String value);
 
 } // ForeignKey

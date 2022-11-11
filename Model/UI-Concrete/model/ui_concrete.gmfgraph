@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition">
+  <gmfgraph:Canvas name="ui_concrete">
+    <figures name="Default">
+      <descriptors name="UserInterfaceFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="UserInterfaceFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="GroupFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="GroupFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="GroupLabelFigure" text="Group">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+        </actualFigure>
+        <accessors accessor="getFigureGroupLabelFigure" figure="/0/@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ButtonFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ButtonFigure">
+          <backgroundColor xsi:type="gmfgraph:RGBColor" red="214" green="214" blue="214"/>
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ButtonLabelFigure" text="Button"/>
+        </actualFigure>
+        <accessors accessor="getFigureButtonLabelFigure" figure="/0/@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="LabelFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="LabelFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="LabelLabelFigure" text="Label"/>
+        </actualFigure>
+        <accessors accessor="getFigureLabelLabelFigure" figure="/0/@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="CheckBoxFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="CheckBoxFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="CheckBoxLabelFigure" text="CheckBox"/>
+        </actualFigure>
+        <accessors accessor="getFigureCheckBoxLabelFigure" figure="/0/@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="TextInputFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="TextInputFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="TextInputLabelFigure" text="TextInput"/>
+        </actualFigure>
+        <accessors accessor="getFigureTextInputLabelFigure" figure="/0/@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ImageFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="ImageFigure" documentURI="platform:/plugin/UI-Concrete/resources/Image.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="ListFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ListFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ListLabelFigure" text="List"/>
+        </actualFigure>
+        <accessors accessor="getFigureListLabelFigure" figure="/0/@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="RadioButtonFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="RadioButtonFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="RadioButtonLabelFigure" text="RadioButton"/>
+        </actualFigure>
+        <accessors accessor="getFigureRadioButtonLabelFigure" figure="/0/@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ButtonActionFigure">
+        <actualFigure xsi:type="gmfgraph:Rectangle" name="ButtonActionFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ButtonActionLabelFigure" text="ButtonAction"/>
+        </actualFigure>
+        <accessors accessor="getFigureButtonActionLabelFigure" figure="/0/@figures.0/@descriptors.9/@actualFigure/@children.0"/>
+      </descriptors>
+    </figures>
+    <nodes name="UserInterface" figure="UserInterfaceFigure"/>
+    <nodes name="Group" figure="GroupFigure"/>
+    <nodes name="Button" figure="ButtonFigure"/>
+    <nodes name="Label" figure="LabelFigure"/>
+    <nodes name="CheckBox" figure="CheckBoxFigure"/>
+    <nodes name="TextInput" figure="TextInputFigure"/>
+    <nodes name="Image" figure="ImageFigure"/>
+    <nodes name="List" figure="ListFigure"/>
+    <nodes name="RadioButton" figure="RadioButtonFigure"/>
+    <nodes name="ButtonAction" figure="ButtonActionFigure"/>
+    <labels name="GroupLabel" figure="GroupFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.1/@accessors.0"/>
+    <labels name="ButtonLabel" figure="ButtonFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.2/@accessors.0"/>
+    <labels name="LabelLabel" figure="LabelFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.3/@accessors.0"/>
+    <labels name="CheckBoxLabel" figure="CheckBoxFigure" accessor="/0/@figures.0/@descriptors.4/@accessors.0"/>
+    <labels name="TextInputLabel" figure="TextInputFigure" elementIcon="false" accessor="/0/@figures.0/@descriptors.5/@accessors.0"/>
+    <labels name="ListLabel" figure="ListFigure" accessor="/0/@figures.0/@descriptors.7/@accessors.0"/>
+    <labels name="RadioButtonLabel" figure="RadioButtonFigure" accessor="/0/@figures.0/@descriptors.8/@accessors.0"/>
+    <labels name="ButtonActionLabel" figure="ButtonActionFigure" accessor="/0/@figures.0/@descriptors.9/@accessors.0"/>
+  </gmfgraph:Canvas>
+  <gmfgraph:Label name="UserInterfaceLabelFigure" text="UserInterface">
+    <maximumSize dx="10000" dy="50"/>
+  </gmfgraph:Label>
+  <gmfgraph:Label name="ImageLabelFigure" text="Image"/>
+</xmi:XMI>

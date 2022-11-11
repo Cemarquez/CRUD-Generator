@@ -49,6 +49,7 @@ public class ForeignKeyItemProvider extends ModelElementItemProvider {
 			addNullablePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addSizePropertyDescriptor(object);
+			addTablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -142,6 +143,28 @@ public class ForeignKeyItemProvider extends ModelElementItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Table feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ForeignKey_table_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_table_feature", "_UI_ForeignKey_type"),
+				 Sql_abstractsPackage.Literals.FOREIGN_KEY__TABLE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns ForeignKey.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +205,7 @@ public class ForeignKeyItemProvider extends ModelElementItemProvider {
 			case Sql_abstractsPackage.FOREIGN_KEY__NULLABLE:
 			case Sql_abstractsPackage.FOREIGN_KEY__TYPE:
 			case Sql_abstractsPackage.FOREIGN_KEY__SIZE:
+			case Sql_abstractsPackage.FOREIGN_KEY__TABLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

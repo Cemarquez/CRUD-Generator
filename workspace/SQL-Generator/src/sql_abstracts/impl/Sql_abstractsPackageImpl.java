@@ -191,6 +191,36 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 	 * @generated
 	 */
 	@Override
+	public EReference getSchema_LstColumns() {
+		return (EReference)schemaEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSchema_LstPrimaryKeys() {
+		return (EReference)schemaEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSchema_LstForeignKeys() {
+		return (EReference)schemaEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getModelElement() {
 		return modelElementEClass;
 	}
@@ -291,6 +321,16 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 	 * @generated
 	 */
 	@Override
+	public EAttribute getColumn_Table() {
+		return (EAttribute)columnEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EAttribute getColumn_Size() {
 		return (EAttribute)columnEClass.getEStructuralFeatures().get(1);
 	}
@@ -313,16 +353,6 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 	@Override
 	public EReference getPrimaryKey_LstReferForeignKeys() {
 		return (EReference)primaryKeyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getPrimaryKey_Table() {
-		return (EAttribute)primaryKeyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -381,6 +411,16 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 	 * @generated
 	 */
 	@Override
+	public EAttribute getForeignKey_Table() {
+		return (EAttribute)foreignKeyEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getType() {
 		return typeEEnum;
 	}
@@ -419,6 +459,9 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 
 		schemaEClass = createEClass(SCHEMA);
 		createEReference(schemaEClass, SCHEMA__LST_TABLES);
+		createEReference(schemaEClass, SCHEMA__LST_COLUMNS);
+		createEReference(schemaEClass, SCHEMA__LST_PRIMARY_KEYS);
+		createEReference(schemaEClass, SCHEMA__LST_FOREIGN_KEYS);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__NAME);
@@ -433,16 +476,17 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 		createEAttribute(columnEClass, COLUMN__SIZE);
 		createEAttribute(columnEClass, COLUMN__NULLABLE);
 		createEAttribute(columnEClass, COLUMN__COMMENTS);
+		createEAttribute(columnEClass, COLUMN__TABLE);
 
 		primaryKeyEClass = createEClass(PRIMARY_KEY);
 		createEReference(primaryKeyEClass, PRIMARY_KEY__LST_REFER_FOREIGN_KEYS);
-		createEAttribute(primaryKeyEClass, PRIMARY_KEY__TABLE);
 
 		foreignKeyEClass = createEClass(FOREIGN_KEY);
 		createEReference(foreignKeyEClass, FOREIGN_KEY__REFER_PRIMARY_KEY);
 		createEAttribute(foreignKeyEClass, FOREIGN_KEY__NULLABLE);
 		createEAttribute(foreignKeyEClass, FOREIGN_KEY__TYPE);
 		createEAttribute(foreignKeyEClass, FOREIGN_KEY__SIZE);
+		createEAttribute(foreignKeyEClass, FOREIGN_KEY__TABLE);
 
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
@@ -488,6 +532,9 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 
 		initEClass(schemaEClass, Schema.class, "Schema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSchema_LstTables(), this.getTable(), null, "lstTables", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSchema_LstColumns(), this.getColumn(), null, "lstColumns", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSchema_LstPrimaryKeys(), this.getPrimaryKey(), null, "lstPrimaryKeys", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSchema_LstForeignKeys(), this.getForeignKey(), null, "lstForeignKeys", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -502,16 +549,17 @@ public class Sql_abstractsPackageImpl extends EPackageImpl implements Sql_abstra
 		initEAttribute(getColumn_Size(), ecorePackage.getEString(), "size", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColumn_Nullable(), ecorePackage.getEBoolean(), "nullable", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getColumn_Comments(), ecorePackage.getEString(), "comments", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getColumn_Table(), ecorePackage.getEString(), "table", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(primaryKeyEClass, PrimaryKey.class, "PrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrimaryKey_LstReferForeignKeys(), this.getForeignKey(), null, "lstReferForeignKeys", null, 0, -1, PrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPrimaryKey_Table(), ecorePackage.getEString(), "table", null, 0, 1, PrimaryKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(foreignKeyEClass, ForeignKey.class, "ForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForeignKey_ReferPrimaryKey(), this.getPrimaryKey(), null, "referPrimaryKey", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getForeignKey_Nullable(), ecorePackage.getEBoolean(), "nullable", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getForeignKey_Type(), this.getType(), "type", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getForeignKey_Size(), ecorePackage.getEString(), "size", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getForeignKey_Table(), ecorePackage.getEString(), "table", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");

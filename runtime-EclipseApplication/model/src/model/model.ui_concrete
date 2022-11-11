@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui_concrete:ModelFactory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui_concrete="http://ui_concrete">
+  <lstUI_Diagrams>
+    <userInterface name="VentanaColegio" width="466" height="351">
+      <lstModelElements xsi:type="ui_concrete:Group" name="profesor" positionX="5" positionY="4" width="441" height="171" title="Profesor">
+        <lstChildModelElements xsi:type="ui_concrete:Label" name="lblProfesor" positionY="19" width="61" height="20" backgroundColor="#dededddddada" text="Cedula" font="Sans Bold 10" foregroundColor="#000000000000" style="normal"/>
+        <lstChildModelElements xsi:type="ui_concrete:TextInput" name="tfCedula" positionX="70" positionY="14" width="226" height="20" text="hola" placeHolder="Ingrese la cedula del profesor" columnSQL="//@lstUI_Diagrams.0/@lstColumns.1"/>
+        <lstChildModelElements xsi:type="ui_concrete:Button" name="Registrar" positionX="155" positionY="79" width="126" height="51" text="Registrar" visible="true"/>
+      </lstModelElements>
+    </userInterface>
+    <ltsButtonActions name="RegistrarAction" ltsGraphicalIndividual="//@lstUI_Diagrams.0/@userInterface/@lstModelElements.0/@lstChildModelElements.1" buttonAction="//@lstUI_Diagrams.0/@userInterface/@lstModelElements.0/@lstChildModelElements.2"/>
+    <lstColumns name="Nombre - Profesor" table="Profesor" db="Colegio" columnName="Nombre"/>
+    <lstColumns name="Prof_ID - Profesor" table="Profesor" db="Colegio" columnName="Prof_ID"/>
+    <lstColumns name="Curso_ID - Curso" table="Curso" db="Colegio" columnName="Curso_ID"/>
+    <lstColumns name="Depto_ID - Depto" table="Depto" db="Colegio" columnName="Depto_ID"/>
+    <lstColumns name="ProfesorCurso_ID - ProfesorCurso" table="ProfesorCurso" db="Colegio" columnName="ProfesorCurso_ID"/>
+    <lstColumns name="Depto_ID - Profesor" table="Profesor" db="Colegio" columnName="Depto_ID"/>
+    <lstColumns name="Curso_ID - ProfesorCurso" table="ProfesorCurso" db="Colegio" columnName="Curso_ID"/>
+    <lstColumns name="Prof_ID - ProfesorCurso" table="ProfesorCurso" db="Colegio" columnName="Prof_ID"/>
+  </lstUI_Diagrams>
+</ui_concrete:ModelFactory>
