@@ -1,6 +1,9 @@
 package generator.view.views;
 
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -122,7 +125,7 @@ public class GeneratorView extends ViewPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ModelFactoryModel mfm = new ModelFactoryModel();
-				mfm.generarModelToTextSQL();
+				mfm.generarModelToTextSQL(null);
 			}
 		});
 		btnM2TSQL.setText("Generar DDL");
@@ -139,7 +142,7 @@ public class GeneratorView extends ViewPart {
 				mfm.limpiarProduccion();
 				mfm.generarModelToModel();
 				mfm.generarModelToModelSQL();
-				mfm.generarModelToTextSQL();
+				mfm.generarModelToTextSQL(null);
 			}
 		});
 		btnAll.setText("Limpiar y generar todo");
@@ -152,8 +155,15 @@ public class GeneratorView extends ViewPart {
 		btnUI.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ModelFactoryModel mfm = new ModelFactoryModel();
-				mfm.generarModelToTextUI();
+				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				CRUDGeneratorView v = new CRUDGeneratorView();
+				v.setLocationRelativeTo(null);
 			}
 		});
 		btnUI.setText("Generar CRUD");

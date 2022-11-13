@@ -58,8 +58,6 @@ treeview[widgetC.oclAsType(List).name/].selection.set_mode(:single)
 [/for]
 [/if]
 [/for]
-window.show_all
-Gtk.main
 [/file]
 [/template]
 

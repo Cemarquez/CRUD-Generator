@@ -1,5 +1,7 @@
 package generator.model;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -13,26 +15,48 @@ public class TransformationM2T_UI {
 
 	private ModelFactory modelFactoryUI;
 	private HashMap<String, String> entrys = new HashMap<>();
-	public TransformationM2T_UI(ModelFactory modelFactoryUI) {
+	private String dbName;
+	private File path;
+	public TransformationM2T_UI(ModelFactory modelFactoryUI, File path) {
+		this.path = path;
 		this.modelFactoryUI = modelFactoryUI;
 	}
 
-	public void transformarM2T() {
+	public void transformarM2T(  ) {
+		
 		StringBuilder sb = new StringBuilder();
+	
 		
 		for(ButtonAction bt : modelFactoryUI.getLstUI_Diagrams().get(0).getLtsButtonActions()) {
 			obtenerEntrys(bt);
 		}
+		sb.append(generarConexion());
 		
 		entrys.forEach((k,v) -> sb.append(v));
+		sb.append("\n");
 		for(ButtonAction bt : modelFactoryUI.getLstUI_Diagrams().get(0).getLtsButtonActions()) {
 			sb.append(generarAction(bt));
 		}
-		
+		sb.append("\n");
+		sb.append("window.show_all\n"
+				+ "Gtk.main\n");
 	
-		System.out.println(sb.toString());
+		guardarArchivo(sb.toString(), path.getPath(), dbName+"Implementation");
 	}
 	
+	public String generarConexion() {
+		String text="";
+		text+="require 'mysql2'\n";
+		text+="host = String('localhost')\n" +
+			  "database = String('" + dbName +"')\n" + 
+			  "username = String('root')\n" + 
+			  "password = String('root')\n" + 
+			  "client = Mysql2::Client.new(:host => host, :username => username, :database => database, :password => password)\n" + 
+			  "puts 'Successfully created connection to database.'" + "\n\n";
+		
+	
+		return text;
+	}
 	
 	public String generarAction(ButtonAction bt) {
 		String text="";
@@ -51,6 +75,7 @@ public class TransformationM2T_UI {
 			GraphicalIndividual gi = bt.getLtsGraphicalIndividual().get(i); 
 			TextInput t = (TextInput) gi;
 			text+="entry" + t.getName() + " = " + "builder.get_object(\"entry" + t.getName() + "\");\n";
+			dbName = t.getColumnSQL().getDb();
 			if(!entrys.containsKey(t.getName()))
 				entrys.put(t.getName(), text);
 			
@@ -85,7 +110,26 @@ public class TransformationM2T_UI {
 		}
 		text+="\")\n";
 		
+		text+= "\tmd = Gtk::MessageDialog.new(window)\n" + "\tmd.text = \"Se ha guardado un nuevo profesor.\"\n" +
+				"\tmd.run\n" + 
+				"\tmd.destroy\n";
+		
+		
+		
 		return text;
+	}
+	
+	
+	private void guardarArchivo(String cadena, String ruta , String nombre) {
+		try{
+			File archivo=new File(ruta);
+			FileWriter escribir=new FileWriter(archivo+"/"+nombre+".rb",true);
+			escribir.write(cadena);
+			escribir.close();
+		}catch(Exception e){
+			System.out.println("Error al Guardar");
+		}
+
 	}
 	
 	

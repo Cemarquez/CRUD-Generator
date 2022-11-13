@@ -60,11 +60,7 @@ public class ModelFactoryModel {
 		ConcretePackage whoownmePackage =  ConcretePackage.eINSTANCE;
 		org.eclipse.emf.ecore.resource.ResourceSet resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
 		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.ui_concrete");
-		System.out.println("Path: "+uri.path());
-
-		File f = new File(uri.path());
-		System.out.println(f.getAbsolutePath());
-		System.out.println(f.exists());
+	
 		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
 		try {
 			resource.load(null);
@@ -126,6 +122,13 @@ public class ModelFactoryModel {
 		org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createURI("platform:/resource/model/src/model/model.abstracts");
 		org.eclipse.emf.ecore.resource.ResourceSet resourceSet= new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
 		org.eclipse.emf.ecore.resource.Resource resource = resourceSet.createResource(uri);
+		
+		System.out.println("Path: "+uri.path());
+
+		File f = new File(uri.path());
+		System.out.println(f.getAbsolutePath());
+		System.out.println(f.exists());
+		
 		resource.getContents().add(modelFactoryAbstracta);
 		try {
 			resource.save(java.util.Collections.EMPTY_MAP);
@@ -207,9 +210,9 @@ public class ModelFactoryModel {
 		salvarUI();
 	}
 	
-	public void generarModelToTextSQL() {
+	public void generarModelToTextSQL(File path) {
 		modelFactorySQL = cargarSQL();
-		TransformationM2T_SQL tM2T = new TransformationM2T_SQL(modelFactorySQL);
+		TransformationM2T_SQL tM2T = new TransformationM2T_SQL(modelFactorySQL, path);
 		tM2T.transformarM2T();
 	}
 
@@ -221,9 +224,9 @@ public class ModelFactoryModel {
 	}
 	
 	
-	public void generarModelToTextUI() {
+	public void generarModelToTextUI(File path) {
 		modelFactoryUI = cargarUI();
-		TransformationM2T_UI tM2T = new TransformationM2T_UI(modelFactoryUI);
+		TransformationM2T_UI tM2T = new TransformationM2T_UI(modelFactoryUI, path);
 		tM2T.transformarM2T();
 	}
 

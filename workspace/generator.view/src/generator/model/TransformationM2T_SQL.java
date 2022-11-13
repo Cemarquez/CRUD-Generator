@@ -17,7 +17,8 @@ public class TransformationM2T_SQL {
 	private ModelFactory modelFactory;
 	private JFileChooser chooser = new JFileChooser();
 	private File path;
-	public TransformationM2T_SQL(ModelFactory modelFactory) {
+	public TransformationM2T_SQL(ModelFactory modelFactory, File path) {
+		this.path = path;
 		this.modelFactory = modelFactory;
 	}
 
@@ -26,16 +27,20 @@ public class TransformationM2T_SQL {
 		String mensaje = "Se ha realziado la transformación M2T SQL";
 		
 		for(Schema s : modelFactory.getLstSchema()) {
-			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			int returnVal = chooser.showOpenDialog(null);
-		    if(returnVal == JFileChooser.APPROVE_OPTION) {
-		    	path =  chooser.getSelectedFile();
-		    	crearSchema(s);
-		    	
-		    	
-		    }else {
-		    	mensaje = "Debe seleccionar una ubicación para continuar!";
-		    }
+			if(path==null) {
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int returnVal = chooser.showOpenDialog(null);
+			    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			    	path =  chooser.getSelectedFile();
+			    	crearSchema(s);
+			    	
+			    	
+			    }else {
+			    	mensaje = "Debe seleccionar una ubicación para continuar!";
+			    }
+			}else{
+				crearSchema(s);
+			}
 		}
 		
 		
