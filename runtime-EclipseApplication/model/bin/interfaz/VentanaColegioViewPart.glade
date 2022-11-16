@@ -5,7 +5,7 @@
 	<object class="GtkWindow" id="VentanaColegio">
   		<child>
 			<object class="GtkFixed" id="fixMain">
-        		<property name="width_request">466</property>
+        		<property name="width_request">516</property>
         		<property name="height_request">441</property>
         		<property name="visible">True</property>	
 				<child>
@@ -66,7 +66,7 @@
 											<property name="receives_default">True</property>
 										</object>
 										<packing>
-											<property name="x">135</property>
+											<property name="x">35</property>
 											<property name="y">189</property>
 										</packing>
 									</child>
@@ -142,6 +142,20 @@
 											<property name="y">114</property>
 										</packing>
 									</child>
+									<child>
+										<object class="GtkButton" id="buttonBorrar">
+											<property name="label" translatable="yes">Borrar</property>
+											<property name="width_request">121</property>
+											<property name="height_request">51</property>
+											<property name="visible">true</property>
+											<property name="can_focus">True</property>
+											<property name="receives_default">True</property>
+										</object>
+										<packing>
+											<property name="x">185</property>
+											<property name="y">189</property>
+										</packing>
+									</child>
 				              </object>
 				        </child>
 						<child type="label">
@@ -154,8 +168,8 @@
 				            </child>
 					</object>
 					<packing>
-						<property name="x">5</property>
-						<property name="y">4</property>
+						<property name="x">25</property>
+						<property name="y">34</property>
 					</packing>
 				</child>
 				

@@ -64,7 +64,7 @@ public class TransformationM2T_UI {
 		text+= "button"+bt.getButtonAction().getName() +" = builder.get_object(\"" +"button"+ bt.getButtonAction().getName() + "\");\n" ; 
 		text+= "button"+bt.getButtonAction().getName() + ".signal_connect(\"clicked\") do \n";
 		text+="\t" + generarQueryAction(bt);
-		text+="end";
+		text+="end\n";
 		return text;
 	}
 	
@@ -87,34 +87,42 @@ public class TransformationM2T_UI {
 		String text="client.query(\"";
 		if(bt.getAction() == Action.CREATE) {
 			text+= "INSERT INTO " + ((TextInput) bt.getLtsGraphicalIndividual().get(0)).getColumnSQL().getTable() +"(";
+			for(int i=0;i<bt.getLtsGraphicalIndividual().size();i++) {
+				GraphicalIndividual gi = bt.getLtsGraphicalIndividual().get(i); 
+				TextInput t = (TextInput) gi;
+				if(i==bt.getLtsGraphicalIndividual().size()-1)
+					text += t.getColumnSQL().getColumnName() +") VALUES(";
+				else
+					text += t.getColumnSQL().getColumnName() +", ";
+					
+			}
+			
+			for(int i=0;i<bt.getLtsGraphicalIndividual().size();i++) {
+				GraphicalIndividual gi = bt.getLtsGraphicalIndividual().get(i); 
+				TextInput t = (TextInput) gi;
+				if(i==bt.getLtsGraphicalIndividual().size()-1)
+					text += "'\"+" +"entry"+ t.getName()+".text"+ "+\"'"+");";
+				else
+					text += "'\"+" +"entry"+ t.getName()+".text"+ "+\"'"+", ";
+					
+			}
+			text+="\")\n";
+			
+			text+= "\tmd = Gtk::MessageDialog.new(window)\n" + "\tmd.text = \"Se ha guardado un nuevo profesor.\"\n" +
+					"\tmd.run\n" + 
+					"\tmd.destroy\n";
+			
+			
+		}else if(bt.getAction() == Action.DELETE) {
+			TextInput ti = ((TextInput) bt.getLtsGraphicalIndividual().get(0));
+			text+= "DELETE FROM " + ti.getColumnSQL().getTable() + " WHERE " +  ti.getColumnSQL().getColumnName()+" = '\"+ entry"+ ti.getName()+".text"+ "+\"';\""+")";
+			text+="\n";
+			text+= "\tmd = Gtk::MessageDialog.new(window)\n" + "\tmd.text = \"Se ha eliminado un " +ti.getColumnSQL().getTable() + "\"\n" +
+					"\tmd.run\n" + 
+					"\tmd.destroy\n";
 		}
 		
-		for(int i=0;i<bt.getLtsGraphicalIndividual().size();i++) {
-			GraphicalIndividual gi = bt.getLtsGraphicalIndividual().get(i); 
-			TextInput t = (TextInput) gi;
-			if(i==bt.getLtsGraphicalIndividual().size()-1)
-				text += t.getColumnSQL().getColumnName() +") VALUES(";
-			else
-				text += t.getColumnSQL().getColumnName() +", ";
-				
-		}
-		
-		for(int i=0;i<bt.getLtsGraphicalIndividual().size();i++) {
-			GraphicalIndividual gi = bt.getLtsGraphicalIndividual().get(i); 
-			TextInput t = (TextInput) gi;
-			if(i==bt.getLtsGraphicalIndividual().size()-1)
-				text += "'\"+" +"entry"+ t.getName()+".text"+ "+\"'"+");";
-			else
-				text += "'\"+" +"entry"+ t.getName()+".text"+ "+\"'"+", ";
-				
-		}
-		text+="\")\n";
-		
-		text+= "\tmd = Gtk::MessageDialog.new(window)\n" + "\tmd.text = \"Se ha guardado un nuevo profesor.\"\n" +
-				"\tmd.run\n" + 
-				"\tmd.destroy\n";
-		
-		
+
 		
 		return text;
 	}
